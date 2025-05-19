@@ -1,1 +1,0 @@
-# Baykar_project
