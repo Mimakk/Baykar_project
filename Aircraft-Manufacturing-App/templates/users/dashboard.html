@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+  <h1>Welcome, {{ user.get_full_name|default:user.username }}!</h1>
+  <p>You are logged in as <strong>{{ user.email }}</strong>.</p>
+
+  <div class="row mt-5">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a href="{% url 'part-list' %}" class="list-group-item list-group-item-action">Parts Inventory</a>
+        <a href="{% url 'aircrafts-list' %}" class="list-group-item list-group-item-action">Aircrafts</a>
+        <a href="{% url 'users-profile' user.pk %}" class="list-group-item list-group-item-action">Profile</a>
+        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action text-danger">Logout</a>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header">
+          Dashboard Overview
+        </div>
+        <div class="card-body">
+          <p>This section can display recent activity, notifications, or quick stats.</p>
+
+          <div class="row text-center">
+            <div class="col-md-4">
+              <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">Parts in Stock</h5>
+                  <p class="card-text">{{ parts_count }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">Aircraft Assembled</h5>
+                  <p class="card-text">{{ aircraft_count }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                  <h5 class="card-title">Pending Tasks</h5>
+                  <p class="card-text">5</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

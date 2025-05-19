@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - {{ object.username }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h1 class="mb-4">Profile</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ object.username }}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ object.email }}</h6>
+
+      {% if object.profile %}
+      <p class="card-text"><strong>Team:</strong> {{ object.profile.team.name }}</p>
+      {% else %}
+      <p class="card-text text-warning">No profile information available.</p>
+      {% endif %}
+
+      <a href="{% url 'users-profile-edit' object.pk %}" class="btn btn-primary mt-3">Edit Profile</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
